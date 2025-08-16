@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anshuman Singh | Interactive Portfolio</title>
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: A single-page application with a sticky top navigation for easy access to thematic sections: Academics, Skills, Experience, and Achievements. This dashboard-style layout replaces the linear resume format to create a more engaging and interactive user experience. The flow is designed to tell a story, from foundational knowledge (Academics) to practical application (Experience & Achievements), making the candidate's profile more compelling and easier to digest for recruiters. -->
+    <!-- Visualization & Content Choices:
+    - Academics: Bar Chart (Chart.js) to compare scores directly. Goal: Compare. Justification: Best for value comparison.
+    - Skills: Radar Chart (Chart.js) for core concepts. Goal: Compare. Justification: Shows multi-variable proficiency profile effectively.
+    - Experience: Big Number Callouts (HTML/CSS) for key metrics. Goal: Inform. Justification: High-impact and scannable.
+    - Achievements: Donut Chart (Chart.js) for JEE percentile. Goal: Compare (part-to-whole). Justification: Visually striking for percentages.
+    - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. All charts use Chart.js with Canvas rendering. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+            color: #3C3C3C;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .nav-link {
+            transition: color 0.3s;
+            color: #75655A;
+        }
+        .nav-link:hover {
+            color: #A88B79;
+        }
+        .accent-primary { color: #A88B79; }
+        .bg-accent-primary { background-color: #A88B79; }
+        .border-accent-primary { border-color: #A88B79; }
+        .bg-accent-secondary { background-color: #D3C5BC; }
+    </style>
+</head>
+<body>
+
+    <header id="home" class="sticky top-0 bg-white/80 backdrop-blur-md z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-xl font-bold accent-primary">Anshuman Singh</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#academics" class="nav-link font-medium">Academics</a>
+                <a href="#skills" class="nav-link font-medium">Skills</a>
+                <a href="#experience" class="nav-link font-medium">Experience</a>
+                <a href="#achievements" class="nav-link font-medium">Achievements</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <section class="text-center py-16">
+            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight">Engineering the Future with Code and Data</h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">A driven Mathematics and Computing Engineering student with a passion for solving complex problems through technology, algorithms, and machine learning.</p>
+             <div class="mt-8 flex justify-center items-center space-x-6 text-gray-500">
+                <span>📧 rajputanshuman1415@gmail.com</span>
+                <span>📞 (+91) 7015138396</span>
+            </div>
+        </section>
+
+        <section id="academics" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold">Academic Journey</h2>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">This section provides insight into my consistent academic performance, which forms the bedrock of my technical knowledge. The chart visualizes my scores across key educational milestones, with the B.Tech CGPA converted to a percentage for comparison.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <div class="chart-container">
+                    <canvas id="academicsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold">Technical Skillset</h2>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Here you can explore my technical capabilities, from programming languages and development tools to a deep understanding of core computer science concepts. The radar chart below offers a holistic view of my proficiency in key theoretical areas.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold mb-4 text-center">Core Competencies</h3>
+                    <div class="chart-container h-[400px] md:h-[450px]">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-8 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">Languages</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-accent-secondary text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">Java</span>
+                            <span class="bg-accent-secondary text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-accent-secondary text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">HTML</span>
+                            <span class="bg-accent-secondary text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">CSS</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">Developer Tools</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">VS Code</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">IntelliJ IDEA</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">Jupyter Notebook</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">MATLAB</span>
+                            <span class="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">Fusion 360</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold">Experience & Impact</h2>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">This section details my role at SIAM DTU, where I translated theoretical knowledge into practical results. I contributed to event management, public relations, and team coordination, achieving significant engagement and demonstrating leadership capabilities.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h3 class="text-2xl font-bold">Core Organizing Committee Member</h3>
+                <p class="text-md font-medium accent-primary mb-4">SIAM DTU (Society for Industrial and Applied Mathematics) | 2024–Present</p>
+                <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6">
+                    <li>Orchestrated technical workshops, guest lectures, and applied mathematics competitions, enriching learning for 200+ participants.</li>
+                    <li>Devised event logistics, sponsorship outreach, and promotional campaigns that drove 600+ registrations for Financial Cricket.</li>
+                    <li>Managed collaboration among a 50-member student team, ensuring seamless execution of large-scale virtual finance challenges.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="achievements" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold">Achievements & Certifications</h2>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Below are key accomplishments that highlight my dedication and problem-solving skills, alongside certifications that represent my commitment to continuous learning in specialized, high-demand fields like Machine Learning.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-center mb-4">JEE Mains: Top 1.75%</h3>
+                    <p class="text-center text-gray-600 mb-4">Secured a 98.25 percentile rank out of over 1.2 million candidates.</p>
+                    <div class="chart-container h-64">
+                        <canvas id="jeeChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col justify-center items-center text-center">
+                    <h3 class="text-2xl font-bold mb-4">DSA Problem Solving</h3>
+                    <div class="bg-accent-primary text-white w-48 h-48 rounded-full flex flex-col justify-center items-center shadow-xl">
+                        <p class="text-6xl font-extrabold">200+</p>
+                        <p class="font-semibold">Problems Solved</p>
+                    </div>
+                    <p class="text-gray-600 mt-4">Across various competitive programming platforms.</p>
+                </div>
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                     <h3 class="text-2xl font-bold text-center mb-6">Professional Certifications</h3>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="border-l-4 border-accent-primary bg-gray-50 p-4 rounded-r-lg">
+                            <h4 class="font-bold text-lg">Machine Learning Specialization</h4>
+                            <p class="text-sm text-gray-500">Coursera, Stanford University & DeepLearning.AI</p>
+                        </div>
+                        <div class="border-l-4 border-gray-400 bg-gray-50 p-4 rounded-r-lg">
+                            <h4 class="font-bold text-lg">Decode Java With DSA</h4>
+                            <p class="text-sm text-gray-500">PW Skills</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white mt-16">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>&copy; 2024 Anshuman Singh. All Rights Reserved.</p>
+            <p class="text-xs mt-2">This interactive portfolio was built with HTML, Tailwind CSS, and Chart.js.</p>
+        </div>
+    </footer>
+
+    <script>
+        const chartData = {
+            academics: {
+                labels: ['10th CBSE', '12th CBSE', 'B.Tech (MCE)'],
+                data: [93.16, 89.4, 78.45]
+            },
+            skills: {
+                labels: [
+                    'Data Structures & Algorithms', 
+                    'Machine Learning', 
+                    'Operating Systems',
+                    'Database Management', 
+                    'Linear Algebra', 
+                    'Scientific Computing'
+                ],
+                data: [9, 8, 8, 7, 9, 8]
+            },
+            jee: {
+                percentile: 98.25
+            }
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const wrapLabel = (label, maxLength = 16) => {
+            if (typeof label !== 'string' || label.length <= maxLength) return label;
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        function initAcademicsChart() {
+            const ctx = document.getElementById('academicsChart')?.getContext('2d');
+            if (!ctx) return;
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.academics.labels,
+                    datasets: [{
+                        label: 'Performance (%)',
+                        data: chartData.academics.data,
+                        backgroundColor: ['#A88B79', '#B9A99D', '#D3C5BC'],
+                        borderRadius: 4,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { beginAtZero: true, max: 100, grid: { drawOnChartArea: false } },
+                        y: { grid: { display: false } }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+
+        function initSkillsChart() {
+            const ctx = document.getElementById('skillsChart')?.getContext('2d');
+            if (!ctx) return;
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: chartData.skills.labels.map(l => wrapLabel(l)),
+                    datasets: [{
+                        label: 'Proficiency',
+                        data: chartData.skills.data,
+                        backgroundColor: 'rgba(168, 139, 121, 0.2)',
+                        borderColor: '#A88B79',
+                        pointBackgroundColor: '#A88B79',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#A88B79',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#E0E0E0' },
+                            grid: { color: '#E0E0E0' },
+                            pointLabels: { font: { size: 13, weight: '500' }, color: '#3C3C3C' },
+                            ticks: { display: false, stepSize: 2, max: 10, min: 0 }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+
+        function initJeeChart() {
+            const ctx = document.getElementById('jeeChart')?.getContext('2d');
+            if (!ctx) return;
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Your Percentile', 'Other Candidates'],
+                    datasets: [{
+                        data: [chartData.jee.percentile, 100 - chartData.jee.percentile],
+                        backgroundColor: ['#A88B79', '#F0EBE7'],
+                        borderColor: '#FDFBF7',
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: (context) => `${context.label}: ${context.raw.toFixed(2)}%`
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initAcademicsChart();
+            initSkillsChart();
+            initJeeChart();
+        });
+    </script>
+</body>
+</html>
